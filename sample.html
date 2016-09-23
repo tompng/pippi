@@ -1,9 +1,11 @@
 <style>
 body{background: linear-gradient(#88f, #8a8);}
-img{position:absolute}
+img{position:fixed}
 body.loading div.pippi{opacity: 0;}
 div.pippi{
-  position:absolute;
+  transition: 1s opacity;
+  opacity: 1;
+  position:fixed;
   top: -200px;
   transform: scale(0.5,0.5);
 }
@@ -76,15 +78,21 @@ img.tail{
 <script>
 var audio=new Audio()
 audio.src='data/pippi.wav'
-function change(){
-  var id=Math.random()<0.9?1:Math.random()<0.6?2:3
+function change(id){
+  if(change.timer)clearTimeout(change.timer)
+  change.timer = null
+  if(!id)id=Math.random()<0.9?1:Math.random()<0.6?2:3
   document.querySelector('div.pippi div').className='face'+id;
   if(id==3)audio.play()
-  setTimeout(change,500+1000*Math.random())
+  change.timer = setTimeout(change,500+1000*Math.random())
 }
+
 onload=function(){
   document.body.className=''
   change()
+  document.onclick=document.ontouchstart=function(){
+    change(3)
+  }
   var x=0.5,y=0;
   var vx=0,vy=0;
   var vz=0,z=0;
