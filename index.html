@@ -9,14 +9,6 @@ div.pippi{
   top: -200px;
   transform: scale(0.5,0.5);
 }
-@keyframes xmove {
-  0%{left: 0;}
-  100%{left: 200px;}
-}
-@keyframes ymove {
-  0%{top: -250px;}
-  100%{top: -100px;}
-}
 div.pippi>div{
   width: 1000px;
   height: 1000px;
@@ -33,14 +25,14 @@ img.body{
 }
 div.face1 .face1, div.face2 .face2, div.face3 .face3{opacity: 1;}
 img.hair{
-  left:280;top:-50;
-  animation: rotate-small ease-in-out 0.5s infinite alternate;
+  left:280;top:-60;
+  animation: rotate-extra-small ease-in-out 0.5s infinite alternate;
   transform-origin: 80%  50%;
 }
 img.right-ear{
   left:10;top:-10;
   animation: rotate-small 0.6s infinite alternate;
-  transform-origin: 60%  40%;
+  transform-origin: 40%  60%;
 }
 img.left-ear{
   left:550;top:50;
@@ -66,6 +58,10 @@ img.tail{
   0%{transform: rotate(-20deg);}
   100%{transform: scale(20deg);}
 }
+@keyframes rotate-extra-small {
+  0%{transform: rotate(-2deg);}
+  100%{transform: scale(2deg);}
+}
 @keyframes rotate-small {
   0%{transform: rotate(-5deg);}
   100%{transform: scale(5deg);}
@@ -90,9 +86,7 @@ function change(id){
 onload=function(){
   document.body.className=''
   change()
-  document.onclick=document.ontouchstart=function(){
-    change(3)
-  }
+  document.onmousedown=document.ontouchstart=function(){change(3)}
   var x=0.5,y=0;
   var vx=0,vy=0;
   var vz=0,z=0;
