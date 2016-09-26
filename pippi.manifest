@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# Version 1.1
+CACHE:
+data/pippi.wav
+sprite/body.png
+sprite/face1.png
+sprite/face2.png
+sprite/face3.png
+sprite/hair.png
+sprite/left_ear.png
+sprite/left_hand.png
+sprite/right_ear.png
+sprite/right_hand.png
+sprite/tail.png

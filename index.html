@@ -1,3 +1,9 @@
+<meta charset=utf-8>
+<title>ぴぴやま</title>
+<meta name="description" content="ぴぴやま">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="icon.png" />
 <style>
 body{background: linear-gradient(#88f, #8a8);}
 img{position:fixed}
@@ -7,7 +13,6 @@ div.pippi{
   opacity: 1;
   position:fixed;
   top: -200px;
-  transform: scale(0.5,0.5);
 }
 div.pippi>div{
   width: 1000px;
@@ -112,7 +117,23 @@ onload=function(){
     var el = document.querySelector('div.pippi')
     var scale=(0.5-0.2*y).toFixed(8)
     window.ss=scale
-    el.style.transform="scale("+[scale,scale]+") translate("+[((2*window.innerWidth-750)*x-600).toFixed(4)+'px',(-innerHeight*z+2*innerHeight-1150).toFixed(4)+'px']+")"
+    var aa=Math.sin(performance.now()/1000)
+    var size=Math.min(innerWidth,innerHeight)*2/3
+    var xx=((2*(window.innerWidth-size))*x+size-1000).toFixed(4)
+    var yy=(2*(innerHeight-size)*(1-z)+size-625).toFixed(4)
+    el.style.transform=(
+      "scale("+[scale,scale]+") translate("+xx+'px,'+yy+'px'+")"
+      +" scale("+2*size+","+2*size+") matrix3d(1,0,0,"+0.2*aa+", 0,1,0,0, 0,0,1,0, 0,0,0,1) scale(0.001,0.001)"
+    )
+    document.querySelector('.hair').style.left=280+aa*20
+    var faces=document.querySelectorAll('.face');
+    for(var i in faces){
+      if(!faces[i].style)continue
+      faces[i].style.left=230+10+aa*30
+      faces[i].style.top=200-5*aa*aa
+    }
+    document.querySelector('.left-hand').style.left=650-15+aa*30
+    document.querySelector('.right-hand').style.left=-100+5+aa*30
   },10)
 }
 </script>
